@@ -12,6 +12,14 @@ public class MyDBHelper extends SQLiteOpenHelper {
     public MyDBHelper(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
         super(context, name, factory, version);
     }
+    private static MyDBHelper instance;
+
+    public static MyDBHelper getInstance(Context c) {
+        if(instance==null) {
+            instance = new MyDBHelper(c,"my.db",null,1);
+        }
+        return instance;
+    }
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
